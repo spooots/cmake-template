@@ -4,9 +4,6 @@ project(foobla-tools)
 
 set(BLA 1)
 
-#find_package(GMock REQUIRED)
-#find_package(PkgConfig REQUIRED)
-
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core)
 
@@ -17,7 +14,7 @@ add_compile_options(
     "$<$<CONFIG:Debug>:-ggdb;-O0;-g>"
 )
 
-#enable_testing()
+enable_testing()
 
 if(COVERAGE_REPORTS)
     include(CTest)
@@ -35,4 +32,4 @@ if(COVERAGE_REPORTS)
 endif(COVERAGE_REPORTS)
 
 add_subdirectory(src)
-#add_subdirectory(tests)
+add_subdirectory(tests)

@@ -1,9 +1,12 @@
+#include <memory>
 #include <gtest/gtest.h>
 
-#include <NCoreApplication>
+#include <QCoreApplication>
 #include <QTimer>
 
 #include "testrunner.h"
+
+static std::shared_ptr<QCoreApplication> app;
 
 TestRunner::TestRunner(int argc, char** argv)
     : QObject()
@@ -13,17 +16,20 @@ TestRunner::TestRunner(int argc, char** argv)
     QTimer::singleShot(0, this, &TestRunner::start);
 }
 
+
+
 void TestRunner::start()
 {
     ::testing::InitGoogleTest(&ac, av);
-    nApp->exit(RUN_ALL_TESTS());
+    app->exit(RUN_ALL_TESTS());
 }
+
+
 
 int main(int argc, char **argv)
 {
-    nare::NCoreApplication::setLogInfo("QGTR", "TestRunner", nare::NLogLevel::Debug, "%{category}%{message}");
-    nare::NCoreApplication app(argc, argv);
+    app = std::make_shared<QCoreApplication>(argc, argv);
     TestRunner runner(argc, argv);
-    int ret = app.exec();
+    int ret = app->exec();
     return ret;
 }
