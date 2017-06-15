@@ -31,5 +31,7 @@ int main(int argc, char **argv)
     app = std::make_shared<QCoreApplication>(argc, argv);
     TestRunner runner(argc, argv);
     int ret = app->exec();
+    app.reset();
+
     return ret;
 }

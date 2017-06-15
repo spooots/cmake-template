@@ -1,5 +1,5 @@
-#ifndef SOCPERFCTRLSERVER_UNITTEST_H
-#define SOCPERFCTRLSERVER_UNITTEST_H
+#ifndef BLA_UNITTEST_H
+#define BLA_UNITTEST_H
 
 #include <memory>
 
@@ -24,4 +24,4 @@ private slots:
 public:
 };
 
-#endif // SOCPERFCTRLSERVER_UNITTEST_H
+#endif // BLA_UNITTEST_H
