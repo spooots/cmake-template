@@ -16,12 +16,15 @@ class Bla_unittest
 {
     Q_OBJECT
 
+public:
+    virtual void SetUp();   // set up the test fixture
+    virtual void TearDown();// tead down the test fixture
+
 protected:
     Bla_unittest();
     virtual ~Bla_unittest();
 private slots:
 
-public:
 };
 
 #endif // BLA_UNITTEST_H
