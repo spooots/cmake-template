@@ -16,20 +16,17 @@ add_compile_options(
 
 enable_testing()
 
-if(COVERAGE_REPORTS)
+
+if(COVERAGE)
     include(CTest)
-    message(STATUS "COVERAGE_REPORTS -> enabled")
-    add_compile_options(--coverage)
+    message(STATUS "COVERAGE -> enabled")
+    add_compile_options(-g -O0 --coverage)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
     set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} --coverage")
     set(GTEST_PARAMS "--nare-verbose --gtest_output=xml:${CMAKE_CURRENT_BINARY_DIR}/Testing/unittest/")
     configure_file(CTestCustom.cmake CTestCustom.cmake)
-    # run tests from root of build directory:
-    #    ctest -D ExperimentalMemCheck
-    # create overview of unit tests (QtCreator build step syntax):
-    #    /bin/sh -c 'xsltproc %{sourceDir}/gtest2txt.xsl Testing/unittest/*.xml > Testing/UnittestOverview.txt'
-endif(COVERAGE_REPORTS)
+endif(COVERAGE)
 
 add_subdirectory(src)
 add_subdirectory(tests)

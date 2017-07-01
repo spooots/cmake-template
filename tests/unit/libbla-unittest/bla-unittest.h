@@ -10,6 +10,8 @@
 #include <QString>
 
 
+#include <bla.h>
+
 class Bla_unittest
     : public QObject
     , public ::testing::Test
@@ -19,11 +21,14 @@ class Bla_unittest
 public:
     virtual void SetUp();   // set up the test fixture
     virtual void TearDown();// tead down the test fixture
+    std::shared_ptr<Bla> bla;
 
 protected:
     Bla_unittest();
     virtual ~Bla_unittest();
 private slots:
+
+private:
 
 };
 

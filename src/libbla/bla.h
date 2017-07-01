@@ -18,10 +18,11 @@ class Bla : public QObject
     #endif
 
 public:
-    explicit Bla(QObject *parent = 0):QObject(parent){}
-    virtual ~Bla() = default;
+    explicit Bla(QObject *parent = 0);
+    //virtual ~Bla() = default;
+    virtual ~Bla();
 
-    QString blabla() { return "BlaBla"; }
+    QString blabla();
 
 public slots:
 

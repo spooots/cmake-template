@@ -28,6 +28,7 @@ Bla_unittest::~Bla_unittest()
 void Bla_unittest::SetUp()
 {
     qDebug() << "SetUp";
+    bla=std::make_shared<Bla>();
 }
 
 
@@ -37,6 +38,11 @@ void Bla_unittest::TearDown()
     qDebug() << "TearDown";
 }
 
+
+TEST_F(Bla_unittest, test_blabla)
+{
+    EXPECT_EQ("BlaBla", bla->blabla());
+}
 
 
 TEST_F(Bla_unittest, test_1)
