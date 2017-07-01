@@ -1,0 +1,11 @@
+ 2144  valgrind --tool=callgrind src/main/foo
+ 2147  sudo apt install kcachegrind
+ 2148  kcachegrind callgrind.out.27528 
+ 
+ 2151  valgrind --tool=massif src/main/foo
+ 
+ 2152  valgrind --tool=cachegrind src/main/foo
+ 
+ 2169  valgrind --tool=memcheck --leak-check=yes tests/unit/libbla-unittest/libbla_unittest
+ 2169  valgrind --tool=memcheck --leak-check=summary tests/unit/libbla-unittest/libbla_unittest
+ 2169  valgrind --tool=memcheck --leak-check=full tests/unit/libbla-unittest/libbla_unittest
