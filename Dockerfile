@@ -4,10 +4,7 @@ MAINTAINER Andreas Schedel <andreas.schedel@gmail.com>
 
 ENV LANG C.UTF-8
 
-RUN useradd andi \
-    && usermod -aG sudo andi \
-    && apt-get update -y \
-    && apt-get install -y  --no-install-recommends \
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
         cmake \
         g++ \
         gcc \
@@ -16,6 +13,7 @@ RUN useradd andi \
         make \
         openssh-server \
         qt5-default \
+        qtcreator \
         sudo \
         tig \
         tmux \
@@ -27,5 +25,16 @@ RUN useradd andi \
 
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 EXPOSE 22
+
+RUN export uid=1000 gid=1000 && \
+    mkdir -p /home/builder && \
+    echo "builder:x:${uid}:${gid}:Developer,,,:/home/builder:/bin/bash" >> /etc/passwd && \
+    echo "builder:x:${uid}:" >> /etc/group && \
+    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder && \
+    chmod 0440 /etc/sudoers.d/builder && \
+    chown ${uid}:${gid} -R /home/builder
+
+USER builder
+ENV HOME /home/builder
 
 RUN /bin/bash
