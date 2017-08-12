@@ -12,6 +12,7 @@ RUN useradd andi \
         g++ \
         gcc \
         git \
+        lcov \
         make \
         openssh-server \
         qt5-default \
@@ -26,3 +27,5 @@ RUN useradd andi \
 
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 EXPOSE 22
+
+RUN /bin/bash
